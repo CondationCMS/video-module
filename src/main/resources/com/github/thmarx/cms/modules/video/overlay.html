@@ -1,0 +1,23 @@
+<div class="cms-video-overlay" 
+	 data-video-id="{{video.id}}" 
+	 data-video-type="{{video.type}}" 
+	 data-video-title="{{video.title}}"
+	 style="width: 100%; height: 100%"
+	 >
+	<a class="play" href="{{video.href}}" aria-label="Play video">
+		<div class="thumbnail-container">
+			<picture>
+				<!--
+				<source srcset="thumbnails/mountains.avif 960w, thumbnails/mountains-2x.avif 1920w"
+					type="image/avif">
+				<img class="thumbnail" srcset="thumbnails/mountains.jpg 960w, thumbnails/mountains-2x.jpg 1920w"
+					src="thumbnails/mountains.jpg" alt="Life in the Mountains" loading="lazy">
+				-->
+				<img class="thumbnail" 
+					 src="{{video.thumbnail}}" alt="{{video.title}}" loading="lazy">
+			</picture>
+			<span class="duration">{{video.duration}}</span>
+			<div class="play-overlay"></div>
+		</div>
+	</a>
+</div>

@@ -1,0 +1,12 @@
+target/
+nbproject/
+nb-configuration.xml
+demo/lib
+demo/logs
+demo/modules
+demo/cms.pid
+demo/*.jar
+demo/LICENSE
+demo/log4j2.xml
+demo/README.modules
+demo/server.yaml
