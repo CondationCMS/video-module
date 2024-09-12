@@ -1,4 +1,8 @@
-package com.github.thmarx.cms.modules.video;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.condation.cms.modules.video;
 
 /*-
  * #%L
@@ -22,34 +26,32 @@ package com.github.thmarx.cms.modules.video;
  * #L%
  */
 
-import com.github.thmarx.cms.api.extensions.RegisterShortCodesExtensionPoint;
-import com.github.thmarx.cms.api.model.Parameter;
+import com.github.thmarx.cms.api.module.CMSModuleContext;
+import com.github.thmarx.cms.api.module.CMSRequestContext;
+import com.github.thmarx.modules.api.ModuleLifeCycleExtension;
 import com.github.thmarx.modules.api.annotation.Extension;
-import java.util.Map;
-import java.util.function.Function;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author t.marx
  */
-@Extension(RegisterShortCodesExtensionPoint.class)
-public class ShortcodesExtensions extends RegisterShortCodesExtensionPoint {
+@Slf4j
+@Extension(ModuleLifeCycleExtension.class)
+public class VideoModule extends ModuleLifeCycleExtension<CMSModuleContext, CMSRequestContext> {
+
+	public static VideoRenderer VIDEO_RENDERER;
+	
+	@Override
+	public void init() {
+	}
 
 	@Override
-	public Map<String, Function<Parameter, String>> shortCodes() {
-		return Map.of(
-				"video", this::video
-		);
+	public void activate() {
+		VIDEO_RENDERER = new VideoRenderer();
+		VIDEO_RENDERER.init();
 	}
 	
-	public String video (Parameter parameters) {
-		Video video = new Video((Map)parameters);
-		
-		if (video.overlay()) {
-			return VideoModule.VIDEO_RENDERER.render("overlay", Map.of("video", video));
-		}
-		return VideoModule.VIDEO_RENDERER.render(video.type(), Map.of("video", video));
-	}
-
+	
 	
 }

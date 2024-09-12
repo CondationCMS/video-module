@@ -1,4 +1,4 @@
-package com.github.thmarx.cms.modules.video;
+package com.condation.cms.modules.video;
 
 /*-
  * #%L
