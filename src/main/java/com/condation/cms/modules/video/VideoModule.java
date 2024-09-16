@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.condation.cms.modules.video;
 
 /*-
@@ -26,10 +22,10 @@ package com.condation.cms.modules.video;
  * #L%
  */
 
-import com.github.thmarx.cms.api.module.CMSModuleContext;
-import com.github.thmarx.cms.api.module.CMSRequestContext;
-import com.github.thmarx.modules.api.ModuleLifeCycleExtension;
-import com.github.thmarx.modules.api.annotation.Extension;
+import com.condation.cms.api.module.CMSModuleContext;
+import com.condation.cms.api.module.CMSRequestContext;
+import com.condation.modules.api.ModuleLifeCycleExtension;
+import com.condation.modules.api.annotation.Extension;
 import lombok.extern.slf4j.Slf4j;
 
 /**

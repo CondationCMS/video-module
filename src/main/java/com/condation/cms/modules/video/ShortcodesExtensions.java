@@ -4,7 +4,7 @@ package com.condation.cms.modules.video;
  * #%L
  * video-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,9 +22,10 @@ package com.condation.cms.modules.video;
  * #L%
  */
 
-import com.github.thmarx.cms.api.extensions.RegisterShortCodesExtensionPoint;
-import com.github.thmarx.cms.api.model.Parameter;
-import com.github.thmarx.modules.api.annotation.Extension;
+
+import com.condation.cms.api.extensions.RegisterShortCodesExtensionPoint;
+import com.condation.cms.api.model.Parameter;
+import com.condation.modules.api.annotation.Extension;
 import java.util.Map;
 import java.util.function.Function;
 
