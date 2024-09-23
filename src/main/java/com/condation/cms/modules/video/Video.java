@@ -21,7 +21,6 @@ package com.condation.cms.modules.video;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
-
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 
@@ -45,27 +44,48 @@ public class Video {
 	public String title() {
 		return (String) parameters.getOrDefault("title", "");
 	}
-	
+
 	public boolean fullscreen() {
-		return (Boolean) parameters.getOrDefault("fullscreen", false);
+		return getBooleanValueOrDefault("fullscreen", false);
 	}
 
-	public boolean autostart() {
-		return (Boolean) parameters.getOrDefault("autostart", false);
+	public boolean autoplay() {
+		return getBooleanValueOrDefault("autoplay", false);
 	}
+
 	public boolean controls() {
-		return (Boolean) parameters.getOrDefault("controls", true);
-	}
-
-	public boolean overlay() {
-		return (Boolean) parameters.getOrDefault("overlay", false);
+		return getBooleanValueOrDefault("controls", true);
 	}
 	
+	public boolean muted() {
+		return getBooleanValueOrDefault("muted", true);
+	}
+
+	public boolean loop() {
+		return getBooleanValueOrDefault("loop", false);
+	}
+
+	public String start() {
+		return (String) parameters.getOrDefault("start", null);
+	}
+	
+	public boolean overlay() {
+		return getBooleanValueOrDefault("overlay", false);
+	}
+
 	public String thumbnail() {
 		return (String) parameters.getOrDefault("thumbnail", "");
 	}
+
+	private boolean getBooleanValueOrDefault (String name, boolean defaultValue) {
+		Object value = parameters.getOrDefault(name, defaultValue);
+		if (value instanceof String) {
+			return Boolean.parseBoolean((String)value);
+		}
+		return (boolean)value;
+	}
 	
-	public String href () {
+	public String href() {
 		if ("youtube".equals(type())) {
 			return "https://youtube.com/watch?v=" + id();
 		} else if ("vimeo".equals(type())) {
@@ -73,42 +93,70 @@ public class Video {
 		}
 		return "";
 	}
-	
+
 	public String queryParameters() {
 		StringBuilder query = new StringBuilder();
-		if ("youtube".equals(type())) {
-			if (autostart()) {
-				query.append("autoplay=1;");
-			} else {
-				query.append("autoplay=0;");
-			}
-			if (controls()) {
-				query.append("controls=1;");
-			} else {
-				query.append("controls=0;");
-			}
-		} 
 
-		if ("vimeo".equals(type())) {
-			return "badge=0&amp;autopause=0&amp;player_id=0";
+		if (autoplay()) {
+			query.append("autoplay=1");
+		} else {
+			query.append("autoplay=0");
+		}
+		if (controls()) {
+			query.append("&controls=1");
+		} else {
+			query.append("&controls=0");
+		}
+		if (loop()) {
+			query.append("&loop=1");
+		} else {
+			query.append("&loop=0");
+		}
+		if (muted()) {
+			query.append("&muted=1");
+		} else {
+			query.append("&muted=0");
+		}
+		
+		if (muted()) {
+			if ("youtube".equals(type())) {
+				query.append("&mute=1");
+			} else if ("vimeo".equals(type())) {
+				query.append("&muted=1");
+			}
+		}
+		
+		if (start() != null) {
+			if ("youtube".equals(type())) {
+				query.append("&start=").append(start());
+			} else if ("vimeo".equals(type())) {
+				query.append("#t=").append(start());
+			}
 		}
 
 		return query.toString();
 	}
 
 	public String allowAttribute() {
-		if ("youtube".equals(type())) {
-			if (autostart()) {
-				return "autoplay=1";
-			} else {
-				return "autoplay=0";
-			}
+		StringBuilder allowAttribute = new StringBuilder();
+
+		if (fullscreen()) {
+			allowAttribute.append("fullscreen;");
+		}
+		if (autoplay()) {
+			allowAttribute.append("autoplay;");
 		}
 
-		if ("vimeo".equals(type())) {
-			return "badge=0&amp;autopause=0&amp;player_id=0";
+		return allowAttribute.toString();
+	}
+
+	public String extras() {
+		StringBuilder extras = new StringBuilder();
+
+		if (fullscreen()) {
+			extras.append(" allowfullscreen=\"allowfullscreen\" ");
 		}
 
-		return "";
+		return extras.toString();
 	}
 }

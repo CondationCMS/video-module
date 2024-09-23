@@ -2,9 +2,13 @@
 	 data-video-id="{{video.id}}" 
 	 data-video-type="{{video.type}}" 
 	 data-video-title="{{video.title}}"
+	 data-video-autoplay="{{video.autoplay}}"
+	 data-video-controls="{{video.controls}}"
+	 data-video-loop="{{video.loop}}"
+	 data-video-muted="{{video.muted}}"
 	 style="width: 100%; height: 100%"
 	 >
-	<a class="play" href="{{video.href}}" aria-label="Play video">
+	<a class="play" href="{{{video.href}}}" aria-label="Play video">
 		<div class="thumbnail-container">
 			<picture>
 				<!--
@@ -14,7 +18,7 @@
 					src="thumbnails/mountains.jpg" alt="Life in the Mountains" loading="lazy">
 				-->
 				<img class="thumbnail" 
-					 src="{{video.thumbnail}}" alt="{{video.title}}" loading="lazy">
+					 src="{{{video.thumbnail}}}" alt="{{video.title}}" loading="lazy">
 			</picture>
 			<span class="duration">{{video.duration}}</span>
 			<div class="play-overlay"></div>

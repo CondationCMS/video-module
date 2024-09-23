@@ -10,23 +10,31 @@
 
 	<div id="content">
 		<div class="container" th:utext="${content}"></div>
-		<!--
-		<div style="width: 240px; height: 100px;">
-			<h3>Youtube Video in template code</h3>
-			[(${shortCodes.call('video', #{'type' : 'youtube', 'id': 'y0sF5xhGreA', 'title' : 'Everybody loves little
-			cats'})})]
-		</div>
-
+		<h2>Vimeo integration</h2>
 		<div style="width: 240px; height: 100px;">
 			<h3>Vimeo Video in template code</h3>
 			[(${shortCodes.call('video', #{'type' : 'vimeo', 'id': '170338499', 'title' : 'Everybody loves little
 			cats'})})]
 		</div>
-		-->
+
+		<h2>Vimeo integration with overlay</h2>
+		<div style="width: 240px; height: 100px;">
+			<h3>Vimeo Video in template code</h3>
+			[(${shortCodes.call('video', #{'type' : 'vimeo', 'id': '170338499', 'title' : 'Everybody loves little
+			cats', 'overlay' : true, 'thumbnail': '/assets/thumbnails/mountains.jpg', 'autoplay': 'true'})})]
+		</div>
+		
+		<h2>Youtube integration</h2>
+		<div style="width: 240px; height: 100px;">
+			<h3>Youtube Video in template code</h3>
+			[(${shortCodes.call('video', #{'type' : 'youtube', 'id': 'y0sF5xhGreA', 'title' : 'Everybody loves little
+			cats'})})]
+		</div>
+		<h2>Youtube integration wiht overlay</h2>
 		<div style="width: 480px; height: 210px;">
 			<h3>Youtube Video in template code</h3>
 			[(${shortCodes.call('video', #{'type' : 'youtube', 'id': 'y0sF5xhGreA', 'title' : 'Everybody loves little
-			cats', 'overlay' : true, 'thumbnail': '/assets/thumbnails/mountains.jpg'})})]
+			cats', 'overlay' : true, 'thumbnail': '/assets/thumbnails/mountains.jpg', 'autoplay': 'true'})})]
 		</div>
 
 	</div>
