@@ -8,5 +8,5 @@ demo/cms.pid
 demo/*.jar
 demo/LICENSE
 demo/log4j2.xml
-demo/README.modules
+demo/README
 demo/server.yaml
