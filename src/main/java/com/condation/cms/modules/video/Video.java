@@ -22,6 +22,7 @@ package com.condation.cms.modules.video;
  * #L%
  */
 import java.util.Map;
+import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -46,43 +47,50 @@ public class Video {
 	}
 
 	public boolean fullscreen() {
-		return getBooleanValueOrDefault("fullscreen", false);
+		return getValueOrDefault("fullscreen", false, Boolean::parseBoolean);
 	}
 
 	public boolean autoplay() {
-		return getBooleanValueOrDefault("autoplay", false);
+		return getValueOrDefault("autoplay", false, Boolean::parseBoolean);
 	}
 
 	public boolean controls() {
-		return getBooleanValueOrDefault("controls", true);
+		return getValueOrDefault("controls", true, Boolean::parseBoolean);
 	}
 	
 	public boolean muted() {
-		return getBooleanValueOrDefault("muted", true);
+		return getValueOrDefault("muted", true, Boolean::parseBoolean);
 	}
 
 	public boolean loop() {
-		return getBooleanValueOrDefault("loop", false);
+		return getValueOrDefault("loop", false, Boolean::parseBoolean);
 	}
 
 	public String start() {
-		return (String) parameters.getOrDefault("start", null);
+		Object value = parameters.getOrDefault("start", null);
+		if (value instanceof String stringValue) {
+			return stringValue;
+		} else if (value instanceof Integer intValue) {
+			return "%d".formatted(intValue);
+		}
+		
+		return null;
 	}
 	
 	public boolean overlay() {
-		return getBooleanValueOrDefault("overlay", false);
+		return getValueOrDefault("overlay", false, Boolean::parseBoolean);
 	}
 
 	public String thumbnail() {
 		return (String) parameters.getOrDefault("thumbnail", "");
 	}
-
-	private boolean getBooleanValueOrDefault (String name, boolean defaultValue) {
+	
+	private <T> T getValueOrDefault (String name, T defaultValue, Function<String, T> parserFunction) {
 		Object value = parameters.getOrDefault(name, defaultValue);
-		if (value instanceof String) {
-			return Boolean.parseBoolean((String)value);
+		if (value instanceof String stringValue) {
+			return parserFunction.apply(stringValue);
 		}
-		return (boolean)value;
+		return (T)value;
 	}
 	
 	public String href() {

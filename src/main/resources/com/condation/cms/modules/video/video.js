@@ -17,6 +17,14 @@ const getQueryParameters = (element) => {
 	}
 	queryParameters += element.dataset.videoMuted === "true" ? 1 : 0;
 
+	if (element.dataset.vidoeStart !== "") {
+		if (type === "youtube") {
+			queryParameters += "&start=" + element.dataset.videoStart
+		} else if (type === "vimeo") {
+			queryParameters += "#t=" + element.dataset.videoStart
+		}
+	}
+
 	return queryParameters;
 }
 
