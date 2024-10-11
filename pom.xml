@@ -14,7 +14,7 @@
 		<module.name>video module</module.name>
 		<module.priority>NORMAL</module.priority>
 		
-		<cms.version>6.0.0-SNAPSHOT</cms.version>
+		<cms.version>6.3.1</cms.version>
 		
 	</properties>
 	
@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>33.3.0-jre</version>
+			<version>33.3.1-jre</version>
 		</dependency>
 
 		
