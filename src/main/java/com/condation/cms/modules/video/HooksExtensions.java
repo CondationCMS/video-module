@@ -23,7 +23,7 @@ package com.condation.cms.modules.video;
  */
 
 
-import com.condation.cms.api.extensions.HookSystemRegisterExtentionPoint;
+import com.condation.cms.api.extensions.HookSystemRegisterExtensionPoint;
 import com.condation.cms.api.feature.features.RequestFeature;
 import com.condation.cms.api.hooks.ActionContext;
 import com.condation.cms.api.hooks.HookSystem;
@@ -35,8 +35,8 @@ import java.util.Map;
  *
  * @author t.marx
  */
-@Extension(HookSystemRegisterExtentionPoint.class)
-public class HooksExtensions extends HookSystemRegisterExtentionPoint{
+@Extension(HookSystemRegisterExtensionPoint.class)
+public class HooksExtensions extends HookSystemRegisterExtensionPoint{
 
 	String contextPath;
 	
