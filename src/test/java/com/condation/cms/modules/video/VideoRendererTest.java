@@ -23,7 +23,6 @@ package com.condation.cms.modules.video;
  */
 
 
-import com.condation.cms.modules.video.VideoRenderer;
 import java.util.Map;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

@@ -22,8 +22,8 @@ package com.condation.cms.modules.video;
  * #L%
  */
 
-import com.condation.cms.api.module.CMSModuleContext;
-import com.condation.cms.api.module.CMSRequestContext;
+import com.condation.cms.api.module.SiteModuleContext;
+import com.condation.cms.api.module.SiteRequestContext;
 import com.condation.modules.api.ModuleLifeCycleExtension;
 import com.condation.modules.api.annotation.Extension;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Extension(ModuleLifeCycleExtension.class)
-public class VideoModule extends ModuleLifeCycleExtension<CMSModuleContext, CMSRequestContext> {
+public class VideoModule extends ModuleLifeCycleExtension<SiteModuleContext, SiteRequestContext> {
 
 	public static VideoRenderer VIDEO_RENDERER;
 	
