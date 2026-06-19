@@ -35,8 +35,16 @@ import lombok.extern.slf4j.Slf4j;
 @Extension(ModuleLifeCycleExtension.class)
 public class VideoModule extends ModuleLifeCycleExtension<SiteModuleContext> {
 
-	public static VideoRenderer VIDEO_RENDERER;
+	private static VideoRenderer VIDEO_RENDERER;
 	
+    public static VideoRenderer getVideoRenderer () {
+        if (VIDEO_RENDERER == null) {
+            VIDEO_RENDERER = new VideoRenderer();
+            VIDEO_RENDERER.init();
+        }
+        return VIDEO_RENDERER;
+    }
+    
 	@Override
 	public void init() {
 	}

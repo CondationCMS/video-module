@@ -29,7 +29,6 @@ import com.microsoft.playwright.junit.UsePlaywright;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
@@ -37,7 +36,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
  * @author thorstenmarx
  */
 @UsePlaywright
-public class E2ETest {
+public class E2EShortCodesTest {
 
 	@RegisterExtension
 	static CMSServerExtension serverExtensions = new CMSServerExtension("test-server");
@@ -49,7 +48,21 @@ public class E2ETest {
 	
 	@Test
     void start_page(Page page) {
-        page.navigate("http://localhost:2020");
-        Assertions.assertThat(page.locator("title").innerText()).isEqualTo("video-module test page");
+        page.navigate("http://localhost:2020/shortcodes");
+        Assertions.assertThat(page.locator("title").innerText()).isEqualTo("video-module test shortcodes");
+    }
+	
+	@Test
+    void test_vimeo_video(Page page) {
+        page.navigate("http://localhost:2020/shortcodes");
+		Assertions.assertThat(page.locator("body").innerHTML())
+				.contains("https://player.vimeo.com/video/170338499");
+    }
+    
+    @Test
+    void test_youtube_video(Page page) {
+        page.navigate("http://localhost:2020/shortcodes");
+		Assertions.assertThat(page.locator("body").innerHTML())
+				.contains("https://www.youtube.com/embed/GIqrmMWgWMg");
     }
 }

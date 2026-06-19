@@ -45,9 +45,9 @@ public class VideoTemplateComponentExtensions extends RegisterTemplateComponentE
 		Video video = new Video((Map)parameters);
 		
 		if (video.overlay()) {
-			return VideoModule.VIDEO_RENDERER.render("overlay", Map.of("video", video));
+			return VideoModule.getVideoRenderer().render("overlay", Map.of("video", video));
 		}
-		return VideoModule.VIDEO_RENDERER.render(video.type(), Map.of("video", video));
+		return VideoModule.getVideoRenderer().render(video.type(), Map.of("video", video));
 	}
 
 	

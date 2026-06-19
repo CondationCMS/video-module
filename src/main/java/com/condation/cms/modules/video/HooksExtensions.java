@@ -27,7 +27,6 @@ import com.condation.cms.api.annotations.Action;
 
 import com.condation.cms.api.extensions.HookSystemRegisterExtensionPoint;
 import com.condation.cms.api.feature.features.RequestFeature;
-import com.condation.cms.api.hooks.ActionContext;
 import com.condation.modules.api.annotation.Extension;
 
 /**
@@ -37,8 +36,8 @@ import com.condation.modules.api.annotation.Extension;
 @Extension(HookSystemRegisterExtensionPoint.class)
 public class HooksExtensions extends HookSystemRegisterExtensionPoint {
 	
-	@Action("system/layout/html/header\"")
-	public String header (ActionContext<String> context) {
+	@Action("system/layout/html/header")
+	public String header () {
 
 		var contextPath = getRequestContext().get(RequestFeature.class).context();
 		if ("/".equals(contextPath)) {
