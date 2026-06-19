@@ -60,7 +60,7 @@ public class E2ETest {
 		 * <script src="#contextpath#/module/video-module/video.js"></script>
          <link href="#contextpath#/module/video-module/video.css" rel="stylesheet"/>
 		 */
-		Assertions.assertThat(page.locator("head").innerText())
+		Assertions.assertThat(page.locator("head").innerHTML())
 				.contains("<script src=\"/module/video-module/video.js\"></script>")
 				.contains("<link href=\"/module/video-module/video.css\" rel=\"stylesheet\"/>");
     }
