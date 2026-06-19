@@ -1,5 +1,11 @@
 package com.condation.cms.modules.video;
 
+import java.util.Map;
+import java.util.function.Function;
+
+import com.condation.cms.api.annotations.ShortCode;
+import com.condation.cms.api.extensions.RegisterShortCodesExtensionPoint;
+
 /*-
  * #%L
  * video-module
@@ -23,26 +29,17 @@ package com.condation.cms.modules.video;
  */
 
 
-import com.condation.cms.api.extensions.RegisterTagsExtensionPoint;
 import com.condation.cms.api.model.Parameter;
 import com.condation.modules.api.annotation.Extension;
-import java.util.Map;
-import java.util.function.Function;
 
 /**
  *
  * @author t.marx
  */
-@Extension(RegisterTagsExtensionPoint.class)
-public class VideoTagsExtensions extends RegisterTagsExtensionPoint {
-
-	@Override
-	public Map<String, Function<Parameter, String>> tags() {
-		return Map.of(
-				"video", this::video
-		);
-	}
+@Extension(RegisterShortCodesExtensionPoint.class)
+public class VideoShortCodesExtensions extends RegisterShortCodesExtensionPoint {
 	
+	@ShortCode("video")
 	public String video (Parameter parameters) {
 		Video video = new Video((Map)parameters);
 		

@@ -1,10 +1,16 @@
 package com.condation.cms.modules.video;
 
+import java.util.Map;
+
+import com.condation.cms.api.annotations.ShortCode;
+import com.condation.cms.api.annotations.TemplateComponent;
+import com.condation.cms.api.extensions.RegisterShortCodesExtensionPoint;
+
 /*-
  * #%L
  * video-module
  * %%
- * Copyright (C) 2024 Marx-Software
+ * Copyright (C) 2024 CondationCMS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,31 +28,27 @@ package com.condation.cms.modules.video;
  * #L%
  */
 
-import com.condation.cms.api.module.SiteModuleContext;
-import com.condation.modules.api.ModuleLifeCycleExtension;
+
+import com.condation.cms.api.model.Parameter;
+import com.condation.cms.api.extensions.RegisterTemplateComponentExtensionPoint;
 import com.condation.modules.api.annotation.Extension;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author t.marx
  */
-@Slf4j
-@Extension(ModuleLifeCycleExtension.class)
-public class VideoModule extends ModuleLifeCycleExtension<SiteModuleContext> {
-
-	public static VideoRenderer VIDEO_RENDERER;
+@Extension(RegisterTemplateComponentExtensionPoint.class)
+public class VideoTemplateComponentExtensions extends RegisterTemplateComponentExtensionPoint {
 	
-	@Override
-	public void init() {
+	@TemplateComponent("video")
+	public String video (Parameter parameters) {
+		Video video = new Video((Map)parameters);
+		
+		if (video.overlay()) {
+			return VideoModule.VIDEO_RENDERER.render("overlay", Map.of("video", video));
+		}
+		return VideoModule.VIDEO_RENDERER.render(video.type(), Map.of("video", video));
 	}
 
-	@Override
-	public void activate() {
-		VIDEO_RENDERER = new VideoRenderer();
-		VIDEO_RENDERER.init();
-	}
-	
-	
 	
 }

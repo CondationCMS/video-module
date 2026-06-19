@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.condation.cms.modules</groupId>
 	<artifactId>video-module</artifactId>
-	<version>2.1.0</version>
+	<version>3.0.0</version>
 	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,7 +15,7 @@
 		<module.priority>NORMAL</module.priority>
 		
 		<cms.version>8.1.0</cms.version>
-		<modules.version>1.4.2</modules.version>
+		<modules-framework.version>1.4.2</modules-framework.version>
 		
 	</properties>
 	
@@ -48,6 +48,19 @@
 		
 		<dependency>
 			<groupId>com.condation.cms</groupId>
+			<artifactId>cms-test-server</artifactId>
+			<scope>test</scope>
+			<version>${cms.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>1.60.0</version>
+            <scope>test</scope>
+        </dependency>
+		
+		<dependency>
+			<groupId>com.condation.cms</groupId>
 			<artifactId>cms-api</artifactId>
 			<scope>provided</scope>
 			<version>${cms.version}</version>
@@ -56,7 +69,7 @@
 			<groupId>com.condation.modules.framework</groupId>
 			<artifactId>modules-api</artifactId>
 			<scope>provided</scope>
-			<version>${modules.version}</version>
+			<version>${modules-framework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -103,6 +116,11 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 							<version>1.18.46</version>
+						</path>
+						<path>
+							<groupId>com.condation.modules.framework</groupId>
+							<artifactId>modules-api</artifactId>
+							<version>${modules-framework.version}</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
