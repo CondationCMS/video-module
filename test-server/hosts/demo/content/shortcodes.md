@@ -10,4 +10,8 @@ published: true
 
 [[ext:video type="vimeo" id="170338499" title="Everybody loves little cats" /]]
 
+[[ext:video type="vimeo" id="092302934" title="Everybody loves little cats" dnt=true /]]
+
 [[ext:video type="youtube" id="GIqrmMWgWMg" title="CondattionCMS" /]]
+
+[[ext:video type="youtube" id="08a08dha0sd" title="CondattionCMS" nocookie=true /]]

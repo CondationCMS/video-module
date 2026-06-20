@@ -2,9 +2,7 @@ package com.condation.cms.modules.video;
 
 import java.util.Map;
 
-import com.condation.cms.api.annotations.ShortCode;
 import com.condation.cms.api.annotations.TemplateComponent;
-import com.condation.cms.api.extensions.RegisterShortCodesExtensionPoint;
 
 /*-
  * #%L
@@ -31,6 +29,7 @@ import com.condation.cms.api.extensions.RegisterShortCodesExtensionPoint;
 
 import com.condation.cms.api.model.Parameter;
 import com.condation.cms.api.extensions.RegisterTemplateComponentExtensionPoint;
+import com.condation.cms.api.feature.features.SitePropertiesFeature;
 import com.condation.modules.api.annotation.Extension;
 
 /**
@@ -42,12 +41,12 @@ public class VideoTemplateComponentExtensions extends RegisterTemplateComponentE
 	
 	@TemplateComponent("video")
 	public String video (Parameter parameters) {
-		Video video = new Video((Map)parameters);
+		Video video = new Video((Map)parameters, getContext().get(SitePropertiesFeature.class).siteProperties());
 		
-		if (video.overlay()) {
-			return VideoModule.getVideoRenderer().render("overlay", Map.of("video", video));
+		if (video.consent()) {
+			return VideoModule.getVideoRenderer().render("overlay", Map.of("video", video), getRequestContext());
 		}
-		return VideoModule.getVideoRenderer().render(video.type(), Map.of("video", video));
+		return VideoModule.getVideoRenderer().render(video.type(), Map.of("video", video), getRequestContext());
 	}
 
 	

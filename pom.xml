@@ -32,12 +32,6 @@
 	</licenses>
 	
 	<dependencies>
-		
-		<dependency>
-			<groupId>com.github.spullara.mustache.java</groupId>
-			<artifactId>compiler</artifactId>
-			<version>0.9.14</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>

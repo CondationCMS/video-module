@@ -21,18 +21,15 @@ package com.condation.cms.modules.video;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
+import com.condation.cms.api.SiteProperties;
 import java.util.Map;
 import java.util.function.Function;
-import lombok.RequiredArgsConstructor;
 
 /**
  *
  * @author t.marx
  */
-@RequiredArgsConstructor
-public class Video {
-
-	private final Map<String, Object> parameters;
+public record Video(Map<String, Object> parameters, SiteProperties siteProperties) {
 
 	public String type() {
 		return (String) parameters.getOrDefault("type", "");
@@ -46,6 +43,27 @@ public class Video {
 		return (String) parameters.getOrDefault("title", "");
 	}
 
+    public boolean dnt () {
+        if (parameters.containsKey("dnt")) {
+            return (boolean)parameters.get("dnt");
+        }
+        return (boolean)siteProperties.getOrDefault("video.dnt", false);
+    }
+
+    public boolean nocookie () {
+        if (parameters.containsKey("nocookie")) {
+            return (boolean)parameters.get("nocookie");
+        }
+        return (boolean)siteProperties.getOrDefault("video.nocookie", false);
+    }
+    
+    public boolean consent() {
+		if (parameters.containsKey("consent")) {
+            return (boolean)parameters.get("consent");
+        }
+        return (boolean)siteProperties.getOrDefault("video.consent", false);
+	}
+    
 	public boolean fullscreen() {
 		return getValueOrDefault("fullscreen", false, Boolean::parseBoolean);
 	}
@@ -77,9 +95,7 @@ public class Video {
 		return null;
 	}
 	
-	public boolean overlay() {
-		return getValueOrDefault("overlay", false, Boolean::parseBoolean);
-	}
+	
 
 	public String thumbnail() {
 		return (String) parameters.getOrDefault("thumbnail", "");

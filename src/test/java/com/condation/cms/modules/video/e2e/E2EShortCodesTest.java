@@ -60,9 +60,24 @@ public class E2EShortCodesTest {
     }
     
     @Test
+    void test_vimeo_video_dnt(Page page) {
+        page.navigate("http://localhost:2020/shortcodes");
+		Assertions.assertThat(page.locator("body").innerHTML())
+				.contains("https://player.vimeo.com/video/092302934?dnt=true");
+    }
+    
+    @Test
     void test_youtube_video(Page page) {
         page.navigate("http://localhost:2020/shortcodes");
 		Assertions.assertThat(page.locator("body").innerHTML())
 				.contains("https://www.youtube.com/embed/GIqrmMWgWMg");
     }
+    
+    @Test
+    void test_youtube_video_nocookie(Page page) {
+        page.navigate("http://localhost:2020/shortcodes");
+		Assertions.assertThat(page.locator("body").innerHTML())
+				.contains("https://www.youtube-nocookie.com/embed/08a08dha0sd");
+    }
+    
 }
