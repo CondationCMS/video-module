@@ -80,4 +80,11 @@ public class E2EShortCodesTest {
 				.contains("https://www.youtube-nocookie.com/embed/08a08dha0sd");
     }
     
+    @Test
+    void test_consent(Page page) {
+        page.navigate("http://localhost:2020/shortcodes");
+		Assertions.assertThat(page.locator("body").innerHTML())
+				.contains("data-video-id=\"0w9ejwe9jg\"");
+    }
+    
 }
