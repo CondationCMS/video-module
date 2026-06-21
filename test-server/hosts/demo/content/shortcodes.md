@@ -14,6 +14,8 @@ published: true
 
 [[ext:video type="youtube" id="GIqrmMWgWMg" title="CondattionCMS" /]]
 
+[[ext:video type="youtube" id="GIqrmMWgWMg" title="CondationCMS square" ratio="1:1" /]]
+
 [[ext:video type="youtube" id="08a08dha0sd" title="CondattionCMS" nocookie=true /]]
 
 [[ext:video type="youtube" id="0w9ejwe9jg" title="CondattionCMS" consent=true thumbnail="/assets/thumbnails/mountain.jpg"/]]

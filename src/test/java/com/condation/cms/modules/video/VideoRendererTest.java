@@ -47,5 +47,27 @@ public class VideoRendererTest {
 //		String html = videoRenderer.render("vimeo", Map.of());
 //		Assertions.assertThat(html).isNotBlank();
 	}
+
+	@Test
+	void defaultsToWidescreenRatio() {
+		Video video = new Video(Map.of(), null);
+
+		Assertions.assertThat(video.ratio()).isEqualTo("16:9");
+		Assertions.assertThat(video.aspectRatio()).isEqualTo("16 / 9");
+	}
+
+	@Test
+	void supportsConfiguredRatios() {
+		Assertions.assertThat(new Video(Map.of("ratio", "16:9"), null).aspectRatio()).isEqualTo("16 / 9");
+		Assertions.assertThat(new Video(Map.of("ratio", "4:3"), null).aspectRatio()).isEqualTo("4 / 3");
+		Assertions.assertThat(new Video(Map.of("ratio", "1:1"), null).aspectRatio()).isEqualTo("1 / 1");
+	}
+
+	@Test
+	void fallsBackForUnsupportedRatio() {
+		Video video = new Video(Map.of("ratio", "21:9"), null);
+
+		Assertions.assertThat(video.ratio()).isEqualTo("16:9");
+	}
 	
 }

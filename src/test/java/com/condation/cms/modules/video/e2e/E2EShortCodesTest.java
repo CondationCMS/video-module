@@ -72,6 +72,13 @@ public class E2EShortCodesTest {
 		Assertions.assertThat(page.locator("body").innerHTML())
 				.contains("https://www.youtube.com/embed/GIqrmMWgWMg");
     }
+
+	@Test
+    void test_video_ratio(Page page) {
+        page.navigate("http://localhost:2020/shortcodes");
+		Assertions.assertThat(page.locator("iframe[title='CondationCMS square']").getAttribute("style"))
+				.contains("aspect-ratio: 1 / 1");
+    }
     
     @Test
     void test_youtube_video_nocookie(Page page) {

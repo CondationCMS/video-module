@@ -23,6 +23,7 @@ package com.condation.cms.modules.video;
  */
 import com.condation.cms.api.SiteProperties;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 /**
@@ -30,6 +31,9 @@ import java.util.function.Function;
  * @author t.marx
  */
 public record Video(Map<String, Object> parameters, SiteProperties siteProperties) {
+
+	private static final String DEFAULT_RATIO = "16:9";
+	private static final Set<String> SUPPORTED_RATIOS = Set.of(DEFAULT_RATIO, "4:3", "1:1");
 
 	public String type() {
 		return (String) parameters.getOrDefault("type", "");
@@ -41,6 +45,18 @@ public record Video(Map<String, Object> parameters, SiteProperties sitePropertie
 
 	public String title() {
 		return (String) parameters.getOrDefault("title", "");
+	}
+
+	public String ratio() {
+		Object value = parameters.get("ratio");
+		if (value instanceof String ratio && SUPPORTED_RATIOS.contains(ratio)) {
+			return ratio;
+		}
+		return DEFAULT_RATIO;
+	}
+
+	public String aspectRatio() {
+		return ratio().replace(":", " / ");
 	}
 
     public boolean dnt () {

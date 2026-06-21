@@ -12,6 +12,12 @@ This example integrates a youtube video in markdown.
 [[video type="youtube" id="y0sF5xhGreA" title="Everybody loves little cats" /]]
 ```
 
+The responsive aspect ratio defaults to `16:9` and can be changed with the `ratio` parameter:
+
+```markdown
+[[video type="youtube" id="y0sF5xhGreA" title="Everybody loves little cats" ratio="4:3" /]]
+```
+
 ### In Template code
 
 This example integrates a youtube video template code via calling the shortcode. 
@@ -38,6 +44,7 @@ The youtube iframe is created on click via javascript.
 | type | youtube or vimeo  | "" |
 | id | The id of the video  | "" |
 | title | The video title | "" |
+| ratio | 16:9, 4:3 or 1:1 | 16:9 |
 | fullscreen | allow fullscreen | false |
 | autoplay | enable autoplay | false |
 | controls | show controls | true |
