@@ -15,7 +15,7 @@
 		<module.priority>NORMAL</module.priority>
 		
 		<cms.version>8.2.0</cms.version>
-		<modules-framework.version>1.4.2</modules-framework.version>
+		<modules-framework.version>1.5.0</modules-framework.version>
 		
 	</properties>
 	
